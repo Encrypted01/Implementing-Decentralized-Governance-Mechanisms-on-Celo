@@ -1,1 +1,2 @@
 # Implementing-Decentralized-Governance-Mechanisms-on-Celo
+Decentralized governance is a critical component of blockchain networks, enabling participants to collectively make decisions and drive the evolution of the ecosystem. In this comprehensive guide, we will delve into the technical details of implementing decentralized governance mechanisms on the Celo blockchain. We will provide a thorough explanation of each topic, accompanied by accurate code examples and illustrations where applicable.
