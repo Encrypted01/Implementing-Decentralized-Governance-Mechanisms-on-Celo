@@ -1,4 +1,4 @@
-```
+```Solidity
 uint256 public constant PROPOSAL_SUBMISSION_PERIOD = 7 days;
 uint256 public constant VOTING_PERIOD = 3 days;
 
