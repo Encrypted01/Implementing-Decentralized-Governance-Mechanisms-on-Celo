@@ -1,9 +1,39 @@
-function executeProposal(uint256 _proposalId) public {
-    require(_proposalId < proposals.length, "Invalid proposal ID");
+contract SimpleMajorityVoting {
+    mapping(address => bool) public votes;
+    uint256 public yesVotes;
+    uint256 public noVotes;
+    bool public proposalPassed;
+    bool public votingEnded;
 
-    Proposal storage proposal = proposals[_proposalId];
-    require(proposal.votesFor > proposal.votesAgainst, "Proposal rejected");
+    function vote(bool _supportsProposal) public {
+        require(!votingEnded, "Voting has ended");
+        require(!votes[msg.sender], "Already voted");
 
-    proposal.executed = true;
-    // Execute the proposal actions
+        votes[msg.sender] = true;
+
+        if (_supportsProposal) {
+            yesVotes++;
+        } else {
+            noVotes++;
+        }
+
+        checkProposalMajority();
+    }
+
+    function checkProposalMajority() internal {
+        uint256 totalVotes = yesVotes + noVotes;
+
+        // Check if the proposal has achieved a simple majority
+        if (totalVotes >= 3 && yesVotes > noVotes) {
+            proposalPassed = true;
+        } else {
+            proposalPassed = false;
+        }
+    }
+
+    function endVoting() public {
+        require(!votingEnded, "Voting has already ended");
+
+        votingEnded = true;
+    }
 }
